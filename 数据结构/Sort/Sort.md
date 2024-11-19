@@ -17,9 +17,9 @@
 <img src="image.png" alt="Alt text" style="margin-top: 0; margin-bottom: 10px;" align="center">
 </div>
 
-&emsp;&emsp;&ensp;初始${L[0 ... i-1]}$是一个排好序的子序列。
-&emsp;&emsp;&ensp;对于元素${L[i]}$插入到前面已经排好序的子序列当中：
-- 查找出${L[i]}$在有序序列${L[0...i-1]}$中的插入位置${k}$；
+&emsp;&emsp;&ensp;初始 ${L[0 ... i-1]}$ 是一个排好序的子序列。
+&emsp;&emsp;&ensp;对于元素 ${L[i]}$ 插入到前面已经排好序的子序列当中：
+- 查找出 ${L[i]}$ 在有序序列 ${L[0...i-1]}$ 中的插入位置${k}$；
 - 将${L[k...i- 1]}$中所有元素后移一个位置；
 - 将${L[i]}$复制到${L[k]}$。
 
@@ -161,8 +161,8 @@ void BubbleSort(ElemType A[], int n){
 </div>
 
 &emsp;&emsp;&ensp;对于快速排序来说，最好的情况是什么样的？最坏的情况是什么样的？
-&emsp;&emsp;&ensp;当初始待排序列与最终要求序列一致时，是最坏的情况，此时空间复杂度是 ${O(n)}$，时间复杂度是 ${O(n2)}$。
-&emsp;&emsp;&ensp;当初始待排序列为乱序序列时，是最好的情况，此时空间复杂度是 ${O(log2n)}$，时间复杂度是 ${O(nlog2n)}$。
+&emsp;&emsp;&ensp;当初始待排序列与最终要求序列一致时，是最坏的情况，此时空间复杂度是 ${O(n)}$，时间复杂度是 ${O(n^2)}$。
+&emsp;&emsp;&ensp;当初始待排序列为乱序序列时，是最好的情况，此时空间复杂度是 ${O(log_2n)}$，时间复杂度是 ${O(nlog_2n)}$。
 &emsp;&emsp;&ensp;例如：${86 38 38}$，所以**不是稳定排序算法**!
 
 ```cpp
@@ -172,14 +172,16 @@ void QuickSort(ElemType A[], int low, int high){
         pos = Partition(A, low, high); //选取枢轴位置 
         QuickSort(A, low, pos-1);
         QuickSort(A, pos+1, high);
+    }
 }
-
 int Partition(ElemType A[], int low, int high){
     ElemType pivot = A[low];
     while(low<high){
-        while(low<high && A[high]>=pivot) high--; //所有的元素都不小于枢轴元素
+        //所有的元素都不小于枢轴元素
+        while(low<high && A[high]>=pivot) high--; 
         A[low] = A[high];
-        while(low<high && A[low] <= pivot) low++;//所有的元素都不大于枢轴元素
+        //所有的元素都不大于枢轴元素
+        while(low<high && A[low] <= pivot) low++;
             A[high] = A[low];
     } 
     A[low] = pivot; //将枢轴元素放到最终位置
