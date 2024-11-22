@@ -108,12 +108,14 @@ typedef struct ArcNode{     // 边表结点
     int adjvex;             // 该弧所指向的顶点的位置 
     struct ArcNode *next;   // 指向下一条弧的指针
 }ArcNode;
-
+```
+```c
 typedef struct Vnode{       // 顶点表结点
     VertexType data;        // 顶点信息
     ArcNode *first;         //指向第一条依附于该顶点的弧的指针
 }Vnode, AdjList[Max_Vertex_Num];
-
+```
+```c
 typedef struct {
     AdjList vertices;       // 邻接表
     int vexnum,arcnum;      // 图的顶点数和弧数
@@ -278,6 +280,8 @@ void dfsTraverse(Graph G){
         } 
     }
 }
+```
+```c
 void dfs(Graph G, int v){
     visit(v); //访问当前结点
     visited[v] = true;
@@ -328,7 +332,8 @@ void bfsTravers(Graph G){
         if(!visited[i]) bfs(G, i); //开始bfs
     }
 }
-
+```
+```c
 void bfs(Graph G, int v){ 
     visit(v);
     visited[v]=true;
